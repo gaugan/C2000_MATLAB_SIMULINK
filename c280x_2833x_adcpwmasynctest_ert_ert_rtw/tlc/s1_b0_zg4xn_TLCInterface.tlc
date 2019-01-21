@@ -1,0 +1,7 @@
+%implements s1_b0_zg4xn_TLCInterface "C"
+
+%function getSystemOutputFcnCallInfo_1_0_1_0_0_0(opaqueBlk) void
+%assign _modelSS = ""
+%createrecord fcnInfo { Name "Outputs"; Args [] }
+%return fcnInfo
+%endfunction

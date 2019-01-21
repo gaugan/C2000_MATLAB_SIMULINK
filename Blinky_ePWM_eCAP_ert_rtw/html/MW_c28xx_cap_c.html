@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="./js/coder_app.js"></script>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="./rtwreport_utils.js"></script>
+<script type="text/javascript" src="./rtwannotate.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/coder_app.css"/>
+</head>
+<body onload="srcFileOnload();">
+<pre id="code">
+<table class="code" id="codeTbl">
+<tr name="1" id="1">
+<td><a id="l1" class='ln'>1</a></td><td><span class="pp">#include "F2806x_Device.h"</span></td></tr>
+<tr name="2" id="2">
+<td><a id="l2" class='ln'>2</a></td><td><span class="pp">#include "F2806x_Examples.h"</span></td></tr>
+<tr name="3" id="3">
+<td><a id="l3" class='ln'>3</a></td><td><span class="pp">#include "F2806x_GlobalPrototypes.h"</span></td></tr>
+<tr name="4" id="4">
+<td><a id="l4" class='ln'>4</a></td><td><span class="pp">#include "rtwtypes.h"</span></td></tr>
+<tr name="5" id="5">
+<td><a id="l5" class='ln'>5</a></td><td><span class="pp">#include "Blinky_ePWM_eCAP.h"</span></td></tr>
+<tr name="6" id="6">
+<td><a id="l6" class='ln'>6</a></td><td><span class="pp">#include "Blinky_ePWM_eCAP_private.h"</span></td></tr>
+<tr name="7" id="7">
+<td><a id="l7" class='ln'>7</a></td><td></td></tr>
+<tr name="8" id="8">
+<td><a id="l8" class='ln'>8</a></td><td><span class="kw">void</span> <a id="8c6" class="tk">init_CAP_GPIO</a>()</td></tr>
+<tr name="9" id="9">
+<td><a id="l9" class='ln'>9</a></td><td><span class="br">{</span></td></tr>
+<tr name="10" id="10">
+<td><a id="l10" class='ln'>10</a></td><td>  <a id="10c3" class="tk">EALLOW</a>;</td></tr>
+<tr name="11" id="11">
+<td><a id="l11" class='ln'>11</a></td><td>  <a id="11c3" class="tk">GpioCtrlRegs</a>.<a id="11c16" class="tk">GPAPUD</a>.<a id="11c23" class="tk">bit</a>.<a id="11c27" class="tk">GPIO5</a> = 0;   <span class="ct">/* Enable pull-up on GPIO5 (CAP1)*/</span></td></tr>
+<tr name="12" id="12">
+<td><a id="l12" class='ln'>12</a></td><td>  <a id="12c3" class="tk">GpioCtrlRegs</a>.<a id="12c16" class="tk">GPAMUX1</a>.<a id="12c24" class="tk">bit</a>.<a id="12c28" class="tk">GPIO5</a> = 3;  <span class="ct">/* Configure GPIO5 as (CAP1)*/</span></td></tr>
+<tr name="13" id="13">
+<td><a id="l13" class='ln'>13</a></td><td>  <a id="13c3" class="tk">EDIS</a>;</td></tr>
+<tr name="14" id="14">
+<td><a id="l14" class='ln'>14</a></td><td><span class="br">}</span></td></tr>
+<tr name="15" id="15">
+<td><a id="l15" class='ln'>15</a></td><td></td></tr>
+<tr name="16" id="16">
+<td><a id="l16" class='ln'>16</a></td><td><span class="kw">void</span> <a id="16c6" class="tk">init_CAP1</a>()</td></tr>
+<tr name="17" id="17">
+<td><a id="l17" class='ln'>17</a></td><td><span class="br">{</span></td></tr>
+<tr name="18" id="18">
+<td><a id="l18" class='ln'>18</a></td><td>  <a id="18c3" class="tk">ECap1Regs</a>.<a id="18c13" class="tk">ECEINT</a>.<a id="18c20" class="tk">all</a> = 0x0000;       <span class="ct">/* Disable all capture interrupts*/</span></td></tr>
+<tr name="19" id="19">
+<td><a id="l19" class='ln'>19</a></td><td>  <a id="19c3" class="tk">ECap1Regs</a>.<a id="19c13" class="tk">ECCLR</a>.<a id="19c19" class="tk">all</a> = 0xFFFF;        <span class="ct">/* Clear all CAP interrupt flags*/</span></td></tr>
+<tr name="20" id="20">
+<td><a id="l20" class='ln'>20</a></td><td>  <a id="20c3" class="tk">ECap1Regs</a>.<a id="20c13" class="tk">ECCTL1</a>.<a id="20c20" class="tk">bit</a>.<a id="20c24" class="tk">CAPLDEN</a> = 0;    <span class="ct">/* Disable CAP1-CAP4 register loads*/</span></td></tr>
+<tr name="21" id="21">
+<td><a id="l21" class='ln'>21</a></td><td>  <a id="21c3" class="tk">ECap1Regs</a>.<a id="21c13" class="tk">ECCTL2</a>.<a id="21c20" class="tk">bit</a>.<a id="21c24" class="tk">TSCTRSTOP</a> = 0;  <span class="ct">/* Make sure the counter is stopped*/</span></td></tr>
+<tr name="22" id="22">
+<td><a id="l22" class='ln'>22</a></td><td>  <a id="22c3" class="tk">ECap1Regs</a>.<a id="22c13" class="tk">CTRPHS</a> = 0U;               <span class="ct">/* Counter Phase Control*/</span></td></tr>
+<tr name="23" id="23">
+<td><a id="l23" class='ln'>23</a></td><td>  <a id="23c3" class="tk">ECap1Regs</a>.<a id="23c13" class="tk">ECCTL2</a>.<a id="23c20" class="tk">bit</a>.<a id="23c24" class="tk">SYNCI_EN</a> = 1;   <span class="ct">/* Enable sync in*/</span></td></tr>
+<tr name="24" id="24">
+<td><a id="l24" class='ln'>24</a></td><td>  <a id="24c3" class="tk">ECap1Regs</a>.<a id="24c13" class="tk">ECCTL2</a>.<a id="24c20" class="tk">bit</a>.<a id="24c24" class="tk">SYNCO_SEL</a> = 0;  <span class="ct">/* Pass through*/</span></td></tr>
+<tr name="25" id="25">
+<td><a id="l25" class='ln'>25</a></td><td>  <a id="25c3" class="tk">ECap1Regs</a>.<a id="25c13" class="tk">ECCTL2</a>.<a id="25c20" class="tk">bit</a>.<a id="25c24" class="tk">CAP_APWM</a> = 0;   <span class="ct">/* Capture mode*/</span></td></tr>
+<tr name="26" id="26">
+<td><a id="l26" class='ln'>26</a></td><td>  <a id="26c3" class="tk">ECap1Regs</a>.<a id="26c13" class="tk">ECCTL2</a>.<a id="26c20" class="tk">bit</a>.<a id="26c24" class="tk">CONT_ONESHT</a> = 1;<span class="ct">/* One-shot*/</span></td></tr>
+<tr name="27" id="27">
+<td><a id="l27" class='ln'>27</a></td><td>  <a id="27c3" class="tk">ECap1Regs</a>.<a id="27c13" class="tk">ECCTL1</a>.<a id="27c20" class="tk">bit</a>.<a id="27c24" class="tk">PRESCALE</a> = 0U;  <span class="ct">/*Event prescaler*/</span></td></tr>
+<tr name="28" id="28">
+<td><a id="l28" class='ln'>28</a></td><td>  <a id="28c3" class="tk">ECap1Regs</a>.<a id="28c13" class="tk">ECCTL2</a>.<a id="28c20" class="tk">bit</a>.<a id="28c24" class="tk">STOP_WRAP</a> = 0;  <span class="ct">/* Stop at 4 events*/</span></td></tr>
+<tr name="29" id="29">
+<td><a id="l29" class='ln'>29</a></td><td>  <a id="29c3" class="tk">ECap1Regs</a>.<a id="29c13" class="tk">ECCTL1</a>.<a id="29c20" class="tk">bit</a>.<a id="29c24" class="tk">CAP1POL</a> = 0;    <span class="ct">/* Select rising or falling edge*/</span></td></tr>
+<tr name="30" id="30">
+<td><a id="l30" class='ln'>30</a></td><td>  <a id="30c3" class="tk">ECap1Regs</a>.<a id="30c13" class="tk">ECCTL1</a>.<a id="30c20" class="tk">bit</a>.<a id="30c24" class="tk">CTRRST1</a> = 0;    <span class="ct">/* Difference operation        */</span></td></tr>
+<tr name="31" id="31">
+<td><a id="l31" class='ln'>31</a></td><td>  <a id="31c3" class="tk">ECap1Regs</a>.<a id="31c13" class="tk">ECCLR</a>.<a id="31c19" class="tk">all</a> = 0x0FF;         <span class="ct">/* Clear pending interrupts*/</span></td></tr>
+<tr name="32" id="32">
+<td><a id="l32" class='ln'>32</a></td><td>  <a id="32c3" class="tk">ECap1Regs</a>.<a id="32c13" class="tk">ECCTL2</a>.<a id="32c20" class="tk">bit</a>.<a id="32c24" class="tk">REARM</a> = 1;      <span class="ct">/* arm one-shot*/</span></td></tr>
+<tr name="33" id="33">
+<td><a id="l33" class='ln'>33</a></td><td>  <a id="33c3" class="tk">ECap1Regs</a>.<a id="33c13" class="tk">ECCTL2</a>.<a id="33c20" class="tk">bit</a>.<a id="33c24" class="tk">TSCTRSTOP</a> = 1;  <span class="ct">/* Start Counter*/</span></td></tr>
+<tr name="34" id="34">
+<td><a id="l34" class='ln'>34</a></td><td>  <a id="34c3" class="tk">ECap1Regs</a>.<a id="34c13" class="tk">ECCTL1</a>.<a id="34c20" class="tk">bit</a>.<a id="34c24" class="tk">CAPLDEN</a> = 1;    <span class="ct">/* Enable CAP1-CAP4 register loads*/</span></td></tr>
+<tr name="35" id="35">
+<td><a id="l35" class='ln'>35</a></td><td><span class="br">}</span></td></tr>
+<tr name="36" id="36">
+<td><a id="l36" class='ln'>36</a></td><td></td></tr>
+</table>
+</pre>
+</body>
+</html>

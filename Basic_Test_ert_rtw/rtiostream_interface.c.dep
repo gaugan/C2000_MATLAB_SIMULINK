@@ -1,0 +1,23 @@
+rtiostream_interface.c.o: \
+ C:/PROGRA~1/MATLAB/R2016b/rtw/c/src/ext_mode/common/rtiostream_interface.c \
+ C:/PROGRA~1/MATLAB/R2016b/rtw/c/src/ext_mode/common/updown_util.h \
+ C:/Users/admin/Documents/MATLAB/Basic_Test_ert_rtw/rtwtypes.h \
+ C:/PROGRA~1/MATLAB/R2016b/simulink/include/rtw_extmode.h \
+ C:/PROGRA~1/MATLAB/R2016b/rtw/c/src/rtiostream.h \
+ C:/PROGRA~1/MATLAB/R2016b/toolbox/coder/rtiostream/src/utils/rtiostream_utils.h \
+ C:/PROGRA~1/MATLAB/R2016b/rtw/c/src/ext_mode/common/ext_types.h \
+ C:/PROGRA~1/MATLAB/R2016b/rtw/c/src/ext_mode/common/ext_share.h
+
+C:/PROGRA~1/MATLAB/R2016b/rtw/c/src/ext_mode/common/updown_util.h:
+
+C:/Users/admin/Documents/MATLAB/Basic_Test_ert_rtw/rtwtypes.h:
+
+C:/PROGRA~1/MATLAB/R2016b/simulink/include/rtw_extmode.h:
+
+C:/PROGRA~1/MATLAB/R2016b/rtw/c/src/rtiostream.h:
+
+C:/PROGRA~1/MATLAB/R2016b/toolbox/coder/rtiostream/src/utils/rtiostream_utils.h:
+
+C:/PROGRA~1/MATLAB/R2016b/rtw/c/src/ext_mode/common/ext_types.h:
+
+C:/PROGRA~1/MATLAB/R2016b/rtw/c/src/ext_mode/common/ext_share.h:

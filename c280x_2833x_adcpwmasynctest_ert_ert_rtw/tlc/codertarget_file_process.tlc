@@ -1,0 +1,67 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Copyright 2013-2015 The MathWorks, Inc.
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%selectfile NULL_FILE
+  
+%% Need to set the template compliance flag before we can use the API
+%assign MATLAB_ROOT = FEVAL("matlabroot")
+%assign MAINLIB_ROOT = FEVAL("fullfile", MATLAB_ROOT, "toolbox", "target", "codertarget", "rtw")
+%addincludepath MAINLIB_ROOT
+%assign RTOS = FEVAL("codertarget.targethardware.getTargetRTOS", CompiledModel.Name)
+%if ISEQUAL(RTOS, "Baremetal")
+    %include "codertarget_bareboard.tlc"
+    %include "codertarget_mainwithoutOS.tlc"
+    %include "codertarget_multiratemultitasking.tlc"
+    %include "codertarget_multiratesingletasking.tlc"
+%else
+    %include "codertarget_OS.tlc"
+    %include "codertarget_mainOS.tlc"
+    %include "codertarget_multiratemultitaskingOS.tlc"
+    %include "codertarget_multiratesingletaskingOS.tlc"
+%endif
+%include "codertarget_singleratesingletasking.tlc"
+%include "codertarget_utils.tlc"
+
+%if FEVAL("codertarget.target.supportsCoderTarget", CompiledModel.Name)
+    %assign ::ISCODERTARGET = 1
+    %assign ::ProfileGenCode = 0
+    %assign ::isProfilePIL = 0
+    %assign ::isPIL = 0
+    %assign ::isLIB = 0
+    %assign tgt = FEVAL("codertarget.target.getTargetName" , CompiledModel.Name)
+    %% TODO Zijad - Abstract away from coder target foundation into TI C2000
+
+    %if ISEQUAL(tgt, [])
+        %assign ::ISCODERTARGET = 0
+        %assign tgt = "unknown target"
+    %endif
+
+    %if (ISEQUAL(tgt, "TI C2000") || ISEQUAL(tgt, "Texas Instruments C2000 Concerto")) && ISEQUAL(CompiledModel.ConfigSet.ProdHWDeviceType, "Texas Instruments->C2000")
+        %assign ML_ROOT = FEVAL("matlabroot")
+        %assign TGT_ROOT = FEVAL("codertarget.target.getTargetFolder", "TI C2000")
+        %assign TGT_ROOT = FEVAL("fullfile", TGT_ROOT, "tlc_c")
+        %addincludepath TGT_ROOT
+        %assign OLDTGTLIB_ROOT = FEVAL("fullfile", ML_ROOT, "toolbox", "idelink", "extensions", "ticcs", "c2000")
+        %addincludepath OLDTGTLIB_ROOT   
+        %include "tic2000_compatibility.tlc" 
+
+        %if ISEQUAL(IRInfo.sysinfo.tgtPrefs.chipInfo.subFamily, "281x")
+            %include "ti_c281x_csl.tlc"
+        %else
+            %include "ti_c280x_csl.tlc"
+        %endif		
+    %endif
+%else
+    %assign ::ISCODERTARGET = 0
+%endif
+
+%if ISEQUAL(::ISCODERTARGET, 1)
+    %if GenerateSampleERTMain
+        %assign CompiledModel.GenerateSampleERTMain = TLC_FALSE
+    %endif
+    %if (CompiledModel.ModelReferenceTargetType == "NONE")
+        %<SLibCreateMain("ert_main")> 
+    %endif
+%endif 

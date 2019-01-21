@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="./js/coder_app.js"></script>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="./rtwreport_utils.js"></script>
+<script type="text/javascript" src="./rtwannotate.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/coder_app.css"/>
+</head>
+<body onload="srcFileOnload();">
+<pre id="code">
+<table class="code" id="codeTbl">
+<tr name="1" id="1">
+<td><a id="l1" class='ln'>1</a></td><td><span class="pp">#include "F2802x_Device.h"</span></td></tr>
+<tr name="2" id="2">
+<td><a id="l2" class='ln'>2</a></td><td><span class="pp">#include "f2802x_examples.h"</span></td></tr>
+<tr name="3" id="3">
+<td><a id="l3" class='ln'>3</a></td><td><span class="pp">#include "f2802x_globalprototypes.h"</span></td></tr>
+<tr name="4" id="4">
+<td><a id="l4" class='ln'>4</a></td><td><span class="pp">#include "rtwtypes.h"</span></td></tr>
+<tr name="5" id="5">
+<td><a id="l5" class='ln'>5</a></td><td><span class="pp">#include "Blinky_ePWM_ADC.h"</span></td></tr>
+<tr name="6" id="6">
+<td><a id="l6" class='ln'>6</a></td><td><span class="pp">#include "Blinky_ePWM_ADC_private.h"</span></td></tr>
+<tr name="7" id="7">
+<td><a id="l7" class='ln'>7</a></td><td></td></tr>
+<tr name="8" id="8">
+<td><a id="l8" class='ln'>8</a></td><td><span class="kw">void</span> <a id="8c6" class="tk">disableWatchdog</a>(<span class="kw">void</span>)</td></tr>
+<tr name="9" id="9">
+<td><a id="l9" class='ln'>9</a></td><td><span class="br">{</span></td></tr>
+<tr name="10" id="10">
+<td><a id="l10" class='ln'>10</a></td><td>  <span class="kw">int</span> <a id="10c7" class="tk">*</a><a id="10c8" class="tk">WatchdogWDCR</a> = (<span class="kw">void</span> <a id="10c29" class="tk">*</a>) 0x7029;</td></tr>
+<tr name="11" id="11">
+<td><a id="l11" class='ln'>11</a></td><td>  <span class="kw">asm</span>(" EALLOW ");</td></tr>
+<tr name="12" id="12">
+<td><a id="l12" class='ln'>12</a></td><td>  <a id="12c3" class="tk">*</a><a id="12c4" class="tk">WatchdogWDCR</a> = 0x0068;</td></tr>
+<tr name="13" id="13">
+<td><a id="l13" class='ln'>13</a></td><td>  <span class="kw">asm</span>(" EDIS ");</td></tr>
+<tr name="14" id="14">
+<td><a id="l14" class='ln'>14</a></td><td><span class="br">}</span></td></tr>
+<tr name="15" id="15">
+<td><a id="l15" class='ln'>15</a></td><td></td></tr>
+<tr name="16" id="16">
+<td><a id="l16" class='ln'>16</a></td><td><span class="kw">void</span> <a id="16c6" class="tk">enable_interrupts</a>()</td></tr>
+<tr name="17" id="17">
+<td><a id="l17" class='ln'>17</a></td><td><span class="br">{</span></td></tr>
+<tr name="18" id="18">
+<td><a id="l18" class='ln'>18</a></td><td>  <span class="ct">/* Enable global Interrupts and higher priority real-time debug events:*/</span></td></tr>
+<tr name="19" id="19">
+<td><a id="l19" class='ln'>19</a></td><td>  <a id="19c3" class="tk">EINT</a>;                                <span class="ct">/* Enable Global interrupt INTM*/</span></td></tr>
+<tr name="20" id="20">
+<td><a id="l20" class='ln'>20</a></td><td>  <a id="20c3" class="tk">ERTM</a>;                                <span class="ct">/* Enable Global realtime interrupt DBGM*/</span></td></tr>
+<tr name="21" id="21">
+<td><a id="l21" class='ln'>21</a></td><td><span class="br">}</span></td></tr>
+<tr name="22" id="22">
+<td><a id="l22" class='ln'>22</a></td><td></td></tr>
+<tr name="23" id="23">
+<td><a id="l23" class='ln'>23</a></td><td><span class="kw">void</span> <a id="23c6" class="tk">init_SCI</a>(<span class="kw">void</span>)</td></tr>
+<tr name="24" id="24">
+<td><a id="l24" class='ln'>24</a></td><td><span class="br">{</span>                                      <span class="ct">/* initialize SCI &amp; FIFO registers */</span></td></tr>
+<tr name="25" id="25">
+<td><a id="l25" class='ln'>25</a></td><td>  <a id="25c3" class="tk">EALLOW</a>;</td></tr>
+<tr name="26" id="26">
+<td><a id="l26" class='ln'>26</a></td><td></td></tr>
+<tr name="27" id="27">
+<td><a id="l27" class='ln'>27</a></td><td>  <span class="ct">/*</span></td></tr>
+<tr name="28" id="28">
+<td><a id="l28" class='ln'>28</a></td><td><span class="ct">   * Initialize SCI_A with following parameters:</span></td></tr>
+<tr name="29" id="29">
+<td><a id="l29" class='ln'>29</a></td><td><span class="ct">   *    BaudRate              : 115385</span></td></tr>
+<tr name="30" id="30">
+<td><a id="l30" class='ln'>30</a></td><td><span class="ct">   *    CharacterLengthBits   : 8</span></td></tr>
+<tr name="31" id="31">
+<td><a id="l31" class='ln'>31</a></td><td><span class="ct">   *    EnableLoopBack        : 0</span></td></tr>
+<tr name="32" id="32">
+<td><a id="l32" class='ln'>32</a></td><td><span class="ct">   *    NumberOfStopBits      : 1</span></td></tr>
+<tr name="33" id="33">
+<td><a id="l33" class='ln'>33</a></td><td><span class="ct">   *    ParityMode            : None</span></td></tr>
+<tr name="34" id="34">
+<td><a id="l34" class='ln'>34</a></td><td><span class="ct">   *    SuspensionMode        : Free_run</span></td></tr>
+<tr name="35" id="35">
+<td><a id="l35" class='ln'>35</a></td><td><span class="ct">   *    CommMode              : Raw_data</span></td></tr>
+<tr name="36" id="36">
+<td><a id="l36" class='ln'>36</a></td><td><span class="ct">   */</span></td></tr>
+<tr name="37" id="37">
+<td><a id="l37" class='ln'>37</a></td><td>  <a id="37c3" class="tk">SciaRegs</a>.<a id="37c12" class="tk">SCICCR</a>.<a id="37c19" class="tk">bit</a>.<a id="37c23" class="tk">STOPBITS</a> = 0;    <span class="ct">/*Number of stop bits. (0: One stop bit, 1: Two stop bits)*/</span></td></tr>
+<tr name="38" id="38">
+<td><a id="l38" class='ln'>38</a></td><td>  <a id="38c3" class="tk">SciaRegs</a>.<a id="38c12" class="tk">SCICCR</a>.<a id="38c19" class="tk">bit</a>.<a id="38c23" class="tk">PARITY</a> = 0;      <span class="ct">/*Parity mode (0: Odd parity, 1: Even parity)*/</span></td></tr>
+<tr name="39" id="39">
+<td><a id="l39" class='ln'>39</a></td><td>  <a id="39c3" class="tk">SciaRegs</a>.<a id="39c12" class="tk">SCICCR</a>.<a id="39c19" class="tk">bit</a>.<a id="39c23" class="tk">PARITYENA</a> = 0;   <span class="ct">/*Enable Pary Mode */</span></td></tr>
+<tr name="40" id="40">
+<td><a id="l40" class='ln'>40</a></td><td>  <a id="40c3" class="tk">SciaRegs</a>.<a id="40c12" class="tk">SCICCR</a>.<a id="40c19" class="tk">bit</a>.<a id="40c23" class="tk">LOOPBKENA</a> = 0;   <span class="ct">/*Loop Back enable*/</span></td></tr>
+<tr name="41" id="41">
+<td><a id="l41" class='ln'>41</a></td><td>  <a id="41c3" class="tk">SciaRegs</a>.<a id="41c12" class="tk">SCICCR</a>.<a id="41c19" class="tk">bit</a>.<a id="41c23" class="tk">ADDRIDLE_MODE</a> = 0;<span class="ct">/*ADDR/IDLE Mode control*/</span></td></tr>
+<tr name="42" id="42">
+<td><a id="l42" class='ln'>42</a></td><td>  <a id="42c3" class="tk">SciaRegs</a>.<a id="42c12" class="tk">SCICCR</a>.<a id="42c19" class="tk">bit</a>.<a id="42c23" class="tk">SCICHAR</a> = 7;     <span class="ct">/*Character length*/</span></td></tr>
+<tr name="43" id="43">
+<td><a id="l43" class='ln'>43</a></td><td>  <a id="43c3" class="tk">SciaRegs</a>.<a id="43c12" class="tk">SCICTL1</a>.<a id="43c20" class="tk">bit</a>.<a id="43c24" class="tk">RXERRINTENA</a> = 0;<span class="ct">/*Disable receive error interrupt*/</span></td></tr>
+<tr name="44" id="44">
+<td><a id="l44" class='ln'>44</a></td><td>  <a id="44c3" class="tk">SciaRegs</a>.<a id="44c12" class="tk">SCICTL1</a>.<a id="44c20" class="tk">bit</a>.<a id="44c24" class="tk">SWRESET</a> = 1;    <span class="ct">/*Software reset*/</span></td></tr>
+<tr name="45" id="45">
+<td><a id="l45" class='ln'>45</a></td><td>  <a id="45c3" class="tk">SciaRegs</a>.<a id="45c12" class="tk">SCICTL1</a>.<a id="45c20" class="tk">bit</a>.<a id="45c24" class="tk">TXENA</a> = 1;      <span class="ct">/* SCI transmitter enable*/</span></td></tr>
+<tr name="46" id="46">
+<td><a id="l46" class='ln'>46</a></td><td>  <a id="46c3" class="tk">SciaRegs</a>.<a id="46c12" class="tk">SCICTL1</a>.<a id="46c20" class="tk">bit</a>.<a id="46c24" class="tk">RXENA</a> = 0;      <span class="ct">/* SCI receiver enable*/</span></td></tr>
+<tr name="47" id="47">
+<td><a id="l47" class='ln'>47</a></td><td>  <a id="47c3" class="tk">SciaRegs</a>.<a id="47c12" class="tk">SCIHBAUD</a> = 0U;</td></tr>
+<tr name="48" id="48">
+<td><a id="l48" class='ln'>48</a></td><td>  <a id="48c3" class="tk">SciaRegs</a>.<a id="48c12" class="tk">SCILBAUD</a> = 64U;</td></tr>
+<tr name="49" id="49">
+<td><a id="l49" class='ln'>49</a></td><td></td></tr>
+<tr name="50" id="50">
+<td><a id="l50" class='ln'>50</a></td><td>  <span class="ct">/*Free run, continue SCI operation regardless of suspend*/</span></td></tr>
+<tr name="51" id="51">
+<td><a id="l51" class='ln'>51</a></td><td>  <a id="51c3" class="tk">SciaRegs</a>.<a id="51c12" class="tk">SCIPRI</a>.<a id="51c19" class="tk">bit</a>.<a id="51c23" class="tk">FREE</a> = 1;        <span class="ct">/* Free emulation mode control*/</span></td></tr>
+<tr name="52" id="52">
+<td><a id="l52" class='ln'>52</a></td><td>  <a id="52c3" class="tk">SciaRegs</a>.<a id="52c12" class="tk">SCIPRI</a>.<a id="52c19" class="tk">bit</a>.<a id="52c23" class="tk">SOFT</a> = 0;        <span class="ct">/* Interrupt priority select*/</span></td></tr>
+<tr name="53" id="53">
+<td><a id="l53" class='ln'>53</a></td><td>  <a id="53c3" class="tk">SciaRegs</a>.<a id="53c12" class="tk">SCIFFCT</a>.<a id="53c20" class="tk">bit</a>.<a id="53c24" class="tk">ABDCLR</a> = 0;</td></tr>
+<tr name="54" id="54">
+<td><a id="l54" class='ln'>54</a></td><td>  <a id="54c3" class="tk">SciaRegs</a>.<a id="54c12" class="tk">SCIFFCT</a>.<a id="54c20" class="tk">bit</a>.<a id="54c24" class="tk">CDC</a> = 0;</td></tr>
+<tr name="55" id="55">
+<td><a id="l55" class='ln'>55</a></td><td>  <a id="55c3" class="tk">SciaRegs</a>.<a id="55c12" class="tk">SCIFFTX</a>.<a id="55c20" class="tk">bit</a>.<a id="55c24" class="tk">SCIRST</a> = 1;     <span class="ct">/* SCI reset rx/tx channels*/</span></td></tr>
+<tr name="56" id="56">
+<td><a id="l56" class='ln'>56</a></td><td>  <a id="56c3" class="tk">SciaRegs</a>.<a id="56c12" class="tk">SCIFFTX</a>.<a id="56c20" class="tk">bit</a>.<a id="56c24" class="tk">SCIFFENA</a> = 1;   <span class="ct">/* SCI FIFO enhancements are enabled.*/</span></td></tr>
+<tr name="57" id="57">
+<td><a id="l57" class='ln'>57</a></td><td>  <a id="57c3" class="tk">SciaRegs</a>.<a id="57c12" class="tk">SCIFFTX</a>.<a id="57c20" class="tk">bit</a>.<a id="57c24" class="tk">TXFIFOXRESET</a> = 1;<span class="ct">/* Re-enable transmit FIFO operation.*/</span></td></tr>
+<tr name="58" id="58">
+<td><a id="l58" class='ln'>58</a></td><td>  <a id="58c3" class="tk">SciaRegs</a>.<a id="58c12" class="tk">SCIFFRX</a>.<a id="58c20" class="tk">bit</a>.<a id="58c24" class="tk">RXFIFORESET</a> = 1;<span class="ct">/* Re-enable receive FIFO operation.*/</span></td></tr>
+<tr name="59" id="59">
+<td><a id="l59" class='ln'>59</a></td><td>  <a id="59c3" class="tk">EDIS</a>;</td></tr>
+<tr name="60" id="60">
+<td><a id="l60" class='ln'>60</a></td><td><span class="br">}</span></td></tr>
+<tr name="61" id="61">
+<td><a id="l61" class='ln'>61</a></td><td></td></tr>
+<tr name="62" id="62">
+<td><a id="l62" class='ln'>62</a></td><td><span class="kw">void</span> <a id="62c6" class="tk">init_SCI_GPIO</a>(<span class="kw">void</span>)</td></tr>
+<tr name="63" id="63">
+<td><a id="l63" class='ln'>63</a></td><td><span class="br">{</span></td></tr>
+<tr name="64" id="64">
+<td><a id="l64" class='ln'>64</a></td><td>  <a id="64c3" class="tk">EALLOW</a>;</td></tr>
+<tr name="65" id="65">
+<td><a id="l65" class='ln'>65</a></td><td>  <a id="65c3" class="tk">GpioCtrlRegs</a>.<a id="65c16" class="tk">GPAPUD</a>.<a id="65c23" class="tk">bit</a>.<a id="65c27" class="tk">GPIO29</a> = 0;  <span class="ct">/*Enable pull-up for GPIO29*/</span></td></tr>
+<tr name="66" id="66">
+<td><a id="l66" class='ln'>66</a></td><td>  <a id="66c3" class="tk">GpioCtrlRegs</a>.<a id="66c16" class="tk">GPAMUX2</a>.<a id="66c24" class="tk">bit</a>.<a id="66c28" class="tk">GPIO29</a> = 1; <span class="ct">/*Configure GPIO29 as SCITXDA*/</span></td></tr>
+<tr name="67" id="67">
+<td><a id="l67" class='ln'>67</a></td><td>  <a id="67c3" class="tk">EDIS</a>;</td></tr>
+<tr name="68" id="68">
+<td><a id="l68" class='ln'>68</a></td><td><span class="br">}</span></td></tr>
+<tr name="69" id="69">
+<td><a id="l69" class='ln'>69</a></td><td></td></tr>
+</table>
+</pre>
+</body>
+</html>

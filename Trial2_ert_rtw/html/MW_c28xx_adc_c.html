@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="./js/coder_app.js"></script>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="./rtwreport_utils.js"></script>
+<script type="text/javascript" src="./rtwannotate.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/coder_app.css"/>
+</head>
+<body onload="srcFileOnload();">
+<pre id="code">
+<table class="code" id="codeTbl">
+<tr name="1" id="1">
+<td><a id="l1" class='ln'>1</a></td><td><span class="pp">#include "F2837xS_device.h"</span></td></tr>
+<tr name="2" id="2">
+<td><a id="l2" class='ln'>2</a></td><td><span class="pp">#include "F2837xS_Examples.h"</span></td></tr>
+<tr name="3" id="3">
+<td><a id="l3" class='ln'>3</a></td><td><span class="pp">#include "F2837xS_GlobalPrototypes.h"</span></td></tr>
+<tr name="4" id="4">
+<td><a id="l4" class='ln'>4</a></td><td><span class="pp">#include "rtwtypes.h"</span></td></tr>
+<tr name="5" id="5">
+<td><a id="l5" class='ln'>5</a></td><td><span class="pp">#include "Trial2.h"</span></td></tr>
+<tr name="6" id="6">
+<td><a id="l6" class='ln'>6</a></td><td><span class="pp">#include "Trial2_private.h"</span></td></tr>
+<tr name="7" id="7">
+<td><a id="l7" class='ln'>7</a></td><td></td></tr>
+<tr name="8" id="8">
+<td><a id="l8" class='ln'>8</a></td><td><span class="kw">void</span> <a id="8c6" class="tk">config_ADCA_SOC0</a>()</td></tr>
+<tr name="9" id="9">
+<td><a id="l9" class='ln'>9</a></td><td><span class="br">{</span></td></tr>
+<tr name="10" id="10">
+<td><a id="l10" class='ln'>10</a></td><td>  <a id="10c3" class="tk">EALLOW</a>;</td></tr>
+<tr name="11" id="11">
+<td><a id="l11" class='ln'>11</a></td><td>  <a id="11c3" class="tk">AdcaRegs</a>.<a id="11c12" class="tk">ADCSOC0CTL</a>.<a id="11c23" class="tk">bit</a>.<a id="11c27" class="tk">CHSEL</a> = 3;   <span class="ct">/* Set SOC0 channel select to ADCIN3*/</span></td></tr>
+<tr name="12" id="12">
+<td><a id="l12" class='ln'>12</a></td><td>  <a id="12c3" class="tk">AdcaRegs</a>.<a id="12c12" class="tk">ADCSOC0CTL</a>.<a id="12c23" class="tk">bit</a>.<a id="12c27" class="tk">TRIGSEL</a> = 1;</td></tr>
+<tr name="13" id="13">
+<td><a id="l13" class='ln'>13</a></td><td>  <a id="13c3" class="tk">AdcaRegs</a>.<a id="13c12" class="tk">ADCSOC0CTL</a>.<a id="13c23" class="tk">bit</a>.<a id="13c27" class="tk">ACQPS</a> = 6;   <span class="ct">/* Set SOC0 S/H Window to 7 ADC Clock Cycles*/</span></td></tr>
+<tr name="14" id="14">
+<td><a id="l14" class='ln'>14</a></td><td>  <a id="14c3" class="tk">AdcaRegs</a>.<a id="14c12" class="tk">ADCINTSOCSEL1</a>.<a id="14c26" class="tk">bit</a>.<a id="14c30" class="tk">SOC0</a> = 0; <span class="ct">/* SOCx No ADCINT Interrupt Trigger Select.*/</span></td></tr>
+<tr name="15" id="15">
+<td><a id="l15" class='ln'>15</a></td><td>  <a id="15c3" class="tk">AdcaRegs</a>.<a id="15c12" class="tk">ADCOFFTRIM</a>.<a id="15c23" class="tk">bit</a>.<a id="15c27" class="tk">OFFTRIM</a> = <a id="15c37" class="tk">AdcaRegs</a>.<a id="15c46" class="tk">ADCOFFTRIM</a>.<a id="15c57" class="tk">bit</a>.<a id="15c61" class="tk">OFFTRIM</a>;<span class="ct">/* Set Offset Error Correctino Value*/</span></td></tr>
+<tr name="16" id="16">
+<td><a id="l16" class='ln'>16</a></td><td>  <a id="16c3" class="tk">AdcaRegs</a>.<a id="16c12" class="tk">ADCCTL1</a>.<a id="16c20" class="tk">bit</a>.<a id="16c24" class="tk">INTPULSEPOS</a> = 1;<span class="ct">/* Late interrupt pulse trips AdcResults latch*/</span></td></tr>
+<tr name="17" id="17">
+<td><a id="l17" class='ln'>17</a></td><td>  <a id="17c3" class="tk">AdcaRegs</a>.<a id="17c12" class="tk">ADCSOCPRICTL</a>.<a id="17c25" class="tk">bit</a>.<a id="17c29" class="tk">SOCPRIORITY</a> = 0;<span class="ct">/* All in round robin mode SOC Priority*/</span></td></tr>
+<tr name="18" id="18">
+<td><a id="l18" class='ln'>18</a></td><td>  <a id="18c3" class="tk">EDIS</a>;</td></tr>
+<tr name="19" id="19">
+<td><a id="l19" class='ln'>19</a></td><td><span class="br">}</span></td></tr>
+<tr name="20" id="20">
+<td><a id="l20" class='ln'>20</a></td><td></td></tr>
+<tr name="21" id="21">
+<td><a id="l21" class='ln'>21</a></td><td><span class="kw">void</span> <a id="21c6" class="tk">config_ADCB_SOC1</a>()</td></tr>
+<tr name="22" id="22">
+<td><a id="l22" class='ln'>22</a></td><td><span class="br">{</span></td></tr>
+<tr name="23" id="23">
+<td><a id="l23" class='ln'>23</a></td><td>  <a id="23c3" class="tk">EALLOW</a>;</td></tr>
+<tr name="24" id="24">
+<td><a id="l24" class='ln'>24</a></td><td>  <a id="24c3" class="tk">AdcbRegs</a>.<a id="24c12" class="tk">ADCSOC1CTL</a>.<a id="24c23" class="tk">bit</a>.<a id="24c27" class="tk">CHSEL</a> = 3;   <span class="ct">/* Set SOC1 channel select to ADCIN3*/</span></td></tr>
+<tr name="25" id="25">
+<td><a id="l25" class='ln'>25</a></td><td>  <a id="25c3" class="tk">AdcbRegs</a>.<a id="25c12" class="tk">ADCSOC1CTL</a>.<a id="25c23" class="tk">bit</a>.<a id="25c27" class="tk">TRIGSEL</a> = 1;</td></tr>
+<tr name="26" id="26">
+<td><a id="l26" class='ln'>26</a></td><td>  <a id="26c3" class="tk">AdcbRegs</a>.<a id="26c12" class="tk">ADCSOC1CTL</a>.<a id="26c23" class="tk">bit</a>.<a id="26c27" class="tk">ACQPS</a> = 6;   <span class="ct">/* Set SOC1 S/H Window to 7 ADC Clock Cycles*/</span></td></tr>
+<tr name="27" id="27">
+<td><a id="l27" class='ln'>27</a></td><td>  <a id="27c3" class="tk">AdcbRegs</a>.<a id="27c12" class="tk">ADCINTSOCSEL1</a>.<a id="27c26" class="tk">bit</a>.<a id="27c30" class="tk">SOC1</a> = 0; <span class="ct">/* SOCx No ADCINT Interrupt Trigger Select.*/</span></td></tr>
+<tr name="28" id="28">
+<td><a id="l28" class='ln'>28</a></td><td>  <a id="28c3" class="tk">AdcbRegs</a>.<a id="28c12" class="tk">ADCOFFTRIM</a>.<a id="28c23" class="tk">bit</a>.<a id="28c27" class="tk">OFFTRIM</a> = <a id="28c37" class="tk">AdcbRegs</a>.<a id="28c46" class="tk">ADCOFFTRIM</a>.<a id="28c57" class="tk">bit</a>.<a id="28c61" class="tk">OFFTRIM</a>;<span class="ct">/* Set Offset Error Correctino Value*/</span></td></tr>
+<tr name="29" id="29">
+<td><a id="l29" class='ln'>29</a></td><td>  <a id="29c3" class="tk">AdcbRegs</a>.<a id="29c12" class="tk">ADCCTL1</a>.<a id="29c20" class="tk">bit</a>.<a id="29c24" class="tk">INTPULSEPOS</a> = 1;<span class="ct">/* Late interrupt pulse trips AdcResults latch*/</span></td></tr>
+<tr name="30" id="30">
+<td><a id="l30" class='ln'>30</a></td><td>  <a id="30c3" class="tk">AdcbRegs</a>.<a id="30c12" class="tk">ADCSOCPRICTL</a>.<a id="30c25" class="tk">bit</a>.<a id="30c29" class="tk">SOCPRIORITY</a> = 0;<span class="ct">/* All in round robin mode SOC Priority*/</span></td></tr>
+<tr name="31" id="31">
+<td><a id="l31" class='ln'>31</a></td><td>  <a id="31c3" class="tk">EDIS</a>;</td></tr>
+<tr name="32" id="32">
+<td><a id="l32" class='ln'>32</a></td><td><span class="br">}</span></td></tr>
+<tr name="33" id="33">
+<td><a id="l33" class='ln'>33</a></td><td></td></tr>
+<tr name="34" id="34">
+<td><a id="l34" class='ln'>34</a></td><td><span class="kw">void</span> <a id="34c6" class="tk">InitAdcA</a>()</td></tr>
+<tr name="35" id="35">
+<td><a id="l35" class='ln'>35</a></td><td><span class="br">{</span></td></tr>
+<tr name="36" id="36">
+<td><a id="l36" class='ln'>36</a></td><td>  <a id="36c3" class="tk">EALLOW</a>;</td></tr>
+<tr name="37" id="37">
+<td><a id="l37" class='ln'>37</a></td><td>  <a id="37c3" class="tk">CpuSysRegs</a>.<a id="37c14" class="tk">PCLKCR13</a>.<a id="37c23" class="tk">bit</a>.<a id="37c27" class="tk">ADC_A</a> = 1;</td></tr>
+<tr name="38" id="38">
+<td><a id="l38" class='ln'>38</a></td><td>  <a id="38c3" class="tk">AdcaRegs</a>.<a id="38c12" class="tk">ADCCTL2</a>.<a id="38c20" class="tk">bit</a>.<a id="38c24" class="tk">PRESCALE</a> = 0;</td></tr>
+<tr name="39" id="39">
+<td><a id="l39" class='ln'>39</a></td><td>  <a id="39c3" class="tk">AdcSetMode</a>(<a id="39c14" class="tk">ADC_ADCA</a>, <a id="39c24" class="tk">ADC_RESOLUTION_12BIT</a>, <a id="39c46" class="tk">ADC_SIGNALMODE_SINGLE</a>);</td></tr>
+<tr name="40" id="40">
+<td><a id="l40" class='ln'>40</a></td><td></td></tr>
+<tr name="41" id="41">
+<td><a id="l41" class='ln'>41</a></td><td>  <span class="ct">//power up the ADC</span></td></tr>
+<tr name="42" id="42">
+<td><a id="l42" class='ln'>42</a></td><td>  <a id="42c3" class="tk">AdcaRegs</a>.<a id="42c12" class="tk">ADCCTL1</a>.<a id="42c20" class="tk">bit</a>.<a id="42c24" class="tk">ADCPWDNZ</a> = 1;</td></tr>
+<tr name="43" id="43">
+<td><a id="l43" class='ln'>43</a></td><td></td></tr>
+<tr name="44" id="44">
+<td><a id="l44" class='ln'>44</a></td><td>  <span class="ct">//delay for 1ms to allow ADC time to power up</span></td></tr>
+<tr name="45" id="45">
+<td><a id="l45" class='ln'>45</a></td><td>  <a id="45c3" class="tk">DELAY_US</a>(1000);</td></tr>
+<tr name="46" id="46">
+<td><a id="l46" class='ln'>46</a></td><td>  <a id="46c3" class="tk">EDIS</a>;</td></tr>
+<tr name="47" id="47">
+<td><a id="l47" class='ln'>47</a></td><td><span class="br">}</span></td></tr>
+<tr name="48" id="48">
+<td><a id="l48" class='ln'>48</a></td><td></td></tr>
+<tr name="49" id="49">
+<td><a id="l49" class='ln'>49</a></td><td><span class="kw">void</span> <a id="49c6" class="tk">InitAdcB</a>()</td></tr>
+<tr name="50" id="50">
+<td><a id="l50" class='ln'>50</a></td><td><span class="br">{</span></td></tr>
+<tr name="51" id="51">
+<td><a id="l51" class='ln'>51</a></td><td>  <a id="51c3" class="tk">EALLOW</a>;</td></tr>
+<tr name="52" id="52">
+<td><a id="l52" class='ln'>52</a></td><td>  <a id="52c3" class="tk">CpuSysRegs</a>.<a id="52c14" class="tk">PCLKCR13</a>.<a id="52c23" class="tk">bit</a>.<a id="52c27" class="tk">ADC_B</a> = 1;</td></tr>
+<tr name="53" id="53">
+<td><a id="l53" class='ln'>53</a></td><td>  <a id="53c3" class="tk">AdcbRegs</a>.<a id="53c12" class="tk">ADCCTL2</a>.<a id="53c20" class="tk">bit</a>.<a id="53c24" class="tk">PRESCALE</a> = 0;</td></tr>
+<tr name="54" id="54">
+<td><a id="l54" class='ln'>54</a></td><td>  <a id="54c3" class="tk">AdcSetMode</a>(<a id="54c14" class="tk">ADC_ADCB</a>, <a id="54c24" class="tk">ADC_RESOLUTION_12BIT</a>, <a id="54c46" class="tk">ADC_SIGNALMODE_SINGLE</a>);</td></tr>
+<tr name="55" id="55">
+<td><a id="l55" class='ln'>55</a></td><td></td></tr>
+<tr name="56" id="56">
+<td><a id="l56" class='ln'>56</a></td><td>  <span class="ct">//power up the ADC</span></td></tr>
+<tr name="57" id="57">
+<td><a id="l57" class='ln'>57</a></td><td>  <a id="57c3" class="tk">AdcbRegs</a>.<a id="57c12" class="tk">ADCCTL1</a>.<a id="57c20" class="tk">bit</a>.<a id="57c24" class="tk">ADCPWDNZ</a> = 1;</td></tr>
+<tr name="58" id="58">
+<td><a id="l58" class='ln'>58</a></td><td></td></tr>
+<tr name="59" id="59">
+<td><a id="l59" class='ln'>59</a></td><td>  <span class="ct">//delay for 1ms to allow ADC time to power up</span></td></tr>
+<tr name="60" id="60">
+<td><a id="l60" class='ln'>60</a></td><td>  <a id="60c3" class="tk">DELAY_US</a>(1000);</td></tr>
+<tr name="61" id="61">
+<td><a id="l61" class='ln'>61</a></td><td>  <a id="61c3" class="tk">EDIS</a>;</td></tr>
+<tr name="62" id="62">
+<td><a id="l62" class='ln'>62</a></td><td><span class="br">}</span></td></tr>
+<tr name="63" id="63">
+<td><a id="l63" class='ln'>63</a></td><td></td></tr>
+</table>
+</pre>
+</body>
+</html>

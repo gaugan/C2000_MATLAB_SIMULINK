@@ -1,0 +1,11 @@
+rtiostream_utils.c.o: \
+ C:/PROGRA~1/MATLAB/R2016b/toolbox/coder/rtiostream/src/utils/rtiostream_utils.c \
+ C:/PROGRA~1/MATLAB/R2016b/toolbox/coder/rtiostream/src/utils/rtiostream_utils.h \
+ C:/Users/admin/Documents/MATLAB/Basic_Test_ert_rtw/rtwtypes.h \
+ C:/PROGRA~1/MATLAB/R2016b/rtw/c/src/rtiostream.h
+
+C:/PROGRA~1/MATLAB/R2016b/toolbox/coder/rtiostream/src/utils/rtiostream_utils.h:
+
+C:/Users/admin/Documents/MATLAB/Basic_Test_ert_rtw/rtwtypes.h:
+
+C:/PROGRA~1/MATLAB/R2016b/rtw/c/src/rtiostream.h:

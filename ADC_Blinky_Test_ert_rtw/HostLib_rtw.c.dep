@@ -1,0 +1,5 @@
+HostLib_rtw.c.o: \
+ C:/PROGRA~1/MATLAB/R2016b/toolbox/shared/dspblks/extern/src/HostLib_rtw.c \
+ C:/PROGRA~1/MATLAB/R2016b/toolbox/shared/dspblks/extern/include/HostLib_rtw.h
+
+C:/PROGRA~1/MATLAB/R2016b/toolbox/shared/dspblks/extern/include/HostLib_rtw.h:

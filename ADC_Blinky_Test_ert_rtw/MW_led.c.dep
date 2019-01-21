@@ -1,0 +1,8 @@
+MW_led.c.o: \
+ C:/ProgramData/MATLAB/SupportPackages/R2016b/toolbox/target/supportpackages/arm_cortex_a/src/MW_led.c \
+ C:/ProgramData/MATLAB/SupportPackages/R2016b/toolbox/target/supportpackages/arm_cortex_a/include/MW_led.h \
+ C:/Users/admin/Documents/MATLAB/ADC_Blinky_Test_ert_rtw/rtwtypes.h
+
+C:/ProgramData/MATLAB/SupportPackages/R2016b/toolbox/target/supportpackages/arm_cortex_a/include/MW_led.h:
+
+C:/Users/admin/Documents/MATLAB/ADC_Blinky_Test_ert_rtw/rtwtypes.h:

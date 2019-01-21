@@ -1,0 +1,8 @@
+HostLib_Network.c.o: \
+ C:/PROGRA~1/MATLAB/R2016b/toolbox/shared/dspblks/extern/src/HostLib_Network.c \
+ C:/PROGRA~1/MATLAB/R2016b/toolbox/shared/dspblks/extern/include/HostLib_Network.h \
+ C:/PROGRA~1/MATLAB/R2016b/toolbox/shared/dspblks/extern/include/HostLib_rtw.h
+
+C:/PROGRA~1/MATLAB/R2016b/toolbox/shared/dspblks/extern/include/HostLib_Network.h:
+
+C:/PROGRA~1/MATLAB/R2016b/toolbox/shared/dspblks/extern/include/HostLib_rtw.h:

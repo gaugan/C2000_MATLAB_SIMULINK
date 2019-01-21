@@ -1,0 +1,8 @@
+linuxinitialize.c.o: \
+ C:/PROGRA~1/MATLAB/R2016b/toolbox/target/codertarget/rtos/src/linuxinitialize.c \
+ C:/PROGRA~1/MATLAB/R2016b/toolbox/target/codertarget/rtos/inc/linuxinitialize.h \
+ C:/Users/admin/Documents/MATLAB/ADC_Blinky_Test_ert_rtw/MW_custom_RTOS_header.h
+
+C:/PROGRA~1/MATLAB/R2016b/toolbox/target/codertarget/rtos/inc/linuxinitialize.h:
+
+C:/Users/admin/Documents/MATLAB/ADC_Blinky_Test_ert_rtw/MW_custom_RTOS_header.h:

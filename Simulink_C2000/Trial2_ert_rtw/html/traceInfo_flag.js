@@ -1,0 +1,52 @@
+function TraceInfoFlag() {
+    this.traceFlag = new Array();
+    this.traceFlag["Trial2.c:48c39"]=1;
+    this.traceFlag["Trial2.c:49c20"]=1;
+    this.traceFlag["Trial2.c:55c27"]=1;
+    this.traceFlag["Trial2.c:55c33"]=1;
+    this.traceFlag["Trial2.c:55c45"]=1;
+    this.traceFlag["Trial2.c:55c65"]=1;
+    this.traceFlag["Trial2.c:64c37"]=1;
+    this.traceFlag["Trial2.c:64c64"]=1;
+    this.traceFlag["Trial2.c:73c16"]=1;
+    this.traceFlag["Trial2.c:73c43"]=1;
+    this.traceFlag["Trial2.c:76c20"]=1;
+    this.traceFlag["Trial2.c:79c22"]=1;
+    this.traceFlag["Trial2.c:112c11"]=1;
+    this.traceFlag["Trial2.c:122c38"]=1;
+    this.traceFlag["Trial2.c:123c20"]=1;
+    this.traceFlag["Trial2.c:129c27"]=1;
+    this.traceFlag["Trial2.c:129c33"]=1;
+    this.traceFlag["Trial2.c:129c45"]=1;
+    this.traceFlag["Trial2.c:129c65"]=1;
+    this.traceFlag["Trial2.c:153c31"]=1;
+    this.traceFlag["Trial2.c:153c62"]=1;
+}
+top.TraceInfoFlag.instance = new TraceInfoFlag();
+function TraceInfoLineFlag() {
+    this.lineTraceFlag = new Array();
+    this.lineTraceFlag["Trial2.c:48"]=1;
+    this.lineTraceFlag["Trial2.c:49"]=1;
+    this.lineTraceFlag["Trial2.c:50"]=1;
+    this.lineTraceFlag["Trial2.c:52"]=1;
+    this.lineTraceFlag["Trial2.c:55"]=1;
+    this.lineTraceFlag["Trial2.c:56"]=1;
+    this.lineTraceFlag["Trial2.c:64"]=1;
+    this.lineTraceFlag["Trial2.c:65"]=1;
+    this.lineTraceFlag["Trial2.c:68"]=1;
+    this.lineTraceFlag["Trial2.c:73"]=1;
+    this.lineTraceFlag["Trial2.c:76"]=1;
+    this.lineTraceFlag["Trial2.c:77"]=1;
+    this.lineTraceFlag["Trial2.c:79"]=1;
+    this.lineTraceFlag["Trial2.c:80"]=1;
+    this.lineTraceFlag["Trial2.c:112"]=1;
+    this.lineTraceFlag["Trial2.c:122"]=1;
+    this.lineTraceFlag["Trial2.c:123"]=1;
+    this.lineTraceFlag["Trial2.c:124"]=1;
+    this.lineTraceFlag["Trial2.c:126"]=1;
+    this.lineTraceFlag["Trial2.c:129"]=1;
+    this.lineTraceFlag["Trial2.c:130"]=1;
+    this.lineTraceFlag["Trial2.c:153"]=1;
+    this.lineTraceFlag["Trial2.c:598"]=1;
+}
+top.TraceInfoLineFlag.instance = new TraceInfoLineFlag();

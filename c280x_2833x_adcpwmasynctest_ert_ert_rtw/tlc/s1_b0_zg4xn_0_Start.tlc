@@ -1,0 +1,19 @@
+%implements s1_b0_zg4xn_0_Start "C"
+
+%function Start(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%assign tlcStartFcnOfS0B0 = OpaqueTLCBlockFcn("Start", 0, 0, 0, 0)
+%assign tlcStartFcnOfS0B1 = OpaqueTLCBlockFcn("Start", 0, 1, 0, 0)
+%<tlcStartFcnOfS0B0>\
+%<tlcStartFcnOfS0B1>\
+%closefile cfgTxt
+%<cfgTxt>
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void Start(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 0, fcnProtoType)>
+%endfunction

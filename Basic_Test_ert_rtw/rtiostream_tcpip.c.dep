@@ -1,0 +1,8 @@
+rtiostream_tcpip.c.o: \
+ C:/PROGRA~1/MATLAB/R2016b/rtw/c/src/rtiostream/rtiostreamtcpip/rtiostream_tcpip.c \
+ C:/PROGRA~1/MATLAB/R2016b/rtw/c/src/rtiostream.h \
+ C:/PROGRA~1/MATLAB/R2016b/extern/include/tmwtypes.h
+
+C:/PROGRA~1/MATLAB/R2016b/rtw/c/src/rtiostream.h:
+
+C:/PROGRA~1/MATLAB/R2016b/extern/include/tmwtypes.h:

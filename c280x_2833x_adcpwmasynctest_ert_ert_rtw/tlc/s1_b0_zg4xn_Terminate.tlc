@@ -1,0 +1,17 @@
+%implements s1_b0_zg4xn_Terminate "C"
+
+%function Terminate(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%assign tlcTerminateFcnOfS1B0 = OpaqueTLCBlockFcn("Terminate", 1, 0, 1, 3)
+%<tlcTerminateFcnOfS1B0>\
+%closefile cfgTxt
+%<cfgTxt>
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void Terminate(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(1, 3, fcnProtoType)>
+%endfunction

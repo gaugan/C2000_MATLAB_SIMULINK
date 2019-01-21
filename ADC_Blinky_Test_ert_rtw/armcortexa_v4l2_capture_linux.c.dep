@@ -1,0 +1,8 @@
+armcortexa_v4l2_capture_linux.c.o: \
+ C:/ProgramData/MATLAB/SupportPackages/R2016b/toolbox/target/supportpackages/arm_cortex_a/blocks/sfcn/src/armcortexa_v4l2_capture_linux.c \
+ C:/ProgramData/MATLAB/SupportPackages/R2016b/toolbox/target/supportpackages/arm_cortex_a/blocks/sfcn/include/armcortexa_v4l2_capture.h \
+ C:/Users/admin/Documents/MATLAB/ADC_Blinky_Test_ert_rtw/rtwtypes.h
+
+C:/ProgramData/MATLAB/SupportPackages/R2016b/toolbox/target/supportpackages/arm_cortex_a/blocks/sfcn/include/armcortexa_v4l2_capture.h:
+
+C:/Users/admin/Documents/MATLAB/ADC_Blinky_Test_ert_rtw/rtwtypes.h:

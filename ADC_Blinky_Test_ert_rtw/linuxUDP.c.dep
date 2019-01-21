@@ -1,0 +1,11 @@
+linuxUDP.c.o: \
+ C:/ProgramData/MATLAB/SupportPackages/R2016b/toolbox/target/supportpackages/arm_cortex_a/src/linuxUDP.c \
+ C:/PROGRA~1/MATLAB/R2016b/toolbox/shared/dspblks/extern/include/HostLib_Network.h \
+ C:/PROGRA~1/MATLAB/R2016b/toolbox/shared/dspblks/extern/include/HostLib_rtw.h \
+ C:/Users/admin/Documents/MATLAB/ADC_Blinky_Test_ert_rtw/rtwtypes.h
+
+C:/PROGRA~1/MATLAB/R2016b/toolbox/shared/dspblks/extern/include/HostLib_Network.h:
+
+C:/PROGRA~1/MATLAB/R2016b/toolbox/shared/dspblks/extern/include/HostLib_rtw.h:
+
+C:/Users/admin/Documents/MATLAB/ADC_Blinky_Test_ert_rtw/rtwtypes.h:

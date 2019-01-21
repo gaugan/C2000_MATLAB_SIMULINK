@@ -1,0 +1,19 @@
+%implements s1_b0_zg4xn_Functions "C"
+
+%function c280x_2833x_ad_TestInterfaceFcn_Fcn0(block) void
+%assign fcnBuff = ""
+%openfile fcnBuff
+%assign cfgTxt = ""
+%openfile cfgTxt
+%closefile cfgTxt
+%<cfgTxt>
+%closefile fcnBuff
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void c280x_2833x_ad_TestInterfaceFcn(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(1, 0, fcnProtoType)>
+%return fcnBuff
+%endfunction
+

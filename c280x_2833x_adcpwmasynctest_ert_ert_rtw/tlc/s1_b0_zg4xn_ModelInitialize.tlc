@@ -1,0 +1,47 @@
+%implements s1_b0_zg4xn_ModelInitialize "C"
+
+%function ModelInitialize(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%assign tlcStartFcnOfS1B0 = OpaqueTLCBlockFcn("Start", 1, 0, 1, 4)
+%<SLibInsertAsyncTaskInitializeCode(system)>
+%<SLibWriteMachineInitialize()>
+%<SLibCGIRDumpSystemUserCode(1, "Start", "Header")>\
+%<SLibCGIRDumpSystemUserCode(1, "Start", "Body")>\
+%assign   Start_open_HardwareInterrupt_1_0 = ""
+%openfile Start_open_HardwareInterrupt_1_0
+
+/* Start for S-Function (c28xisr_c2000): '<Root>/Hardware Interrupt' incorporates:
+ *  Start for SubSystem: '<Root>/ADC-PWM Subsystem'
+ */
+%closefile Start_open_HardwareInterrupt_1_0
+
+%assign    Start_body_HardwareInterrupt_1_0 = ""
+%openfile  Start_body_HardwareInterrupt_1_0
+
+%if !SLibCGSysFcnIsEmptyForTid(CompiledModel.System[0], "Start",0)
+%<SLibCGIRGenReusableSysCall("Start", [], 0, 0, 0, 0, 20, 1)>\
+
+%endif
+%closefile Start_body_HardwareInterrupt_1_0
+
+%assign    Start_close_HardwareInterrupt_1_0 = ""
+%openfile  Start_close_HardwareInterrupt_1_0
+
+/* End of Start for S-Function (c28xisr_c2000): '<Root>/Hardware Interrupt' */
+%closefile Start_close_HardwareInterrupt_1_0
+%<SLibCG_DumpSSCode(Start_open_HardwareInterrupt_1_0, Start_body_HardwareInterrupt_1_0, Start_close_HardwareInterrupt_1_0)>
+
+%<tlcStartFcnOfS1B0>\
+%<SLibCGIRDumpSystemUserCode(1, "Start", "Trailer")>\
+%<SLibInsertInitPeriodicCStatesFcn(system)>
+%closefile cfgTxt
+%<cfgTxt>
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void ModelInitialize(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(1, 4, fcnProtoType)>
+%endfunction

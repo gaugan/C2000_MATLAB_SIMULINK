@@ -1,0 +1,23 @@
+%implements s1_b0_zg4xn_0_Outputs "C"
+
+%function Outputs(block, system) Output
+%<SLibCGIRAccessLocalVar(0, 1)> %% rtb_Gain1
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%assign tlcOutputsFcnOfS0B0 = OpaqueTLCBlockFcn("Outputs", 0, 0, 0, 1)
+%assign tlcOutputsFcnOfS0B1 = OpaqueTLCBlockFcn("Outputs", 0, 1, 0, 1)
+%<tlcOutputsFcnOfS0B0>\
+/* Gain: '<S1>/Gain1' */
+/*@>5f0*/rtb_Gain1/*@>36f*/ = /*@>77c*/c280x_2833x_adcpwmasynctest_e_P./*@>924*/Gain1_Gain/*@>36c*/ * /*@>76f*/c280x_2833x_adcpwmasynctest_e_B./*@>921*/ADC;
+%<tlcOutputsFcnOfS0B1>\
+%closefile cfgTxt
+%<cfgTxt>
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void Outputs(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 1, fcnProtoType)>
+%<LibSetSystemField(system, "CachedOutput1LocalVars", localVarDecl)>
+%endfunction

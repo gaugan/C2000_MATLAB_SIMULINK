@@ -1,0 +1,46 @@
+%implements s1_b0_zg4xn_0_TLCInterface "C"
+
+%function getOutputAddr_0_0_0_0_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&c280x_2833x_adcpwmasynctest_e_B.ADC"
+%endfunction
+
+%function getOutput_0_0_0_0_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "c280x_2833x_adcpwmasynctest_e_B.ADC"
+%endfunction
+
+%function getInputAddr_0_1_0_0_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+%<SLibCGIRAccessLocalVar(0, 1)> %% rtb_Gain1
+
+%return "&rtb_Gain1"
+%endfunction
+
+%function getInput_0_1_0_0_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+%<SLibCGIRAccessLocalVar(0, 1)> %% rtb_Gain1
+
+%return "rtb_Gain1"
+%endfunction
+
+%function getOutputAddr_0_0_0_1_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "&c280x_2833x_adcpwmasynctest_e_B.ADC"
+%endfunction
+
+%function getOutput_0_0_0_1_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+
+%return "c280x_2833x_adcpwmasynctest_e_B.ADC"
+%endfunction
+
+%function getInputAddr_0_1_0_1_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+%<SLibCGIRAccessLocalVar(0, 1)> %% rtb_Gain1
+
+%return "&rtb_Gain1"
+%endfunction
+
+%function getInput_0_1_0_1_0_0(opaqueBlock, block, lcv, ucv, sigIdx, reim) void
+%<SLibCGIRAccessLocalVar(0, 1)> %% rtb_Gain1
+
+%return "rtb_Gain1"
+%endfunction
+
